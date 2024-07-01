@@ -14,13 +14,13 @@ const cadastro = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!formData.nome || !formData.email || !formData.senha) {
+    if (!formData.name || !formData.email || !formData.password) {
       return setErrorMessage("Por favor, preencha todos os campos!!!");
     }
     try {
       setLoading(true);
       setErrorMessage(null);
-      const res = await fetch("http://localhost:3000/api/paciente/register", {
+      const res = await fetch("http://localhost:3000/users/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -58,7 +58,7 @@ const cadastro = () => {
               <TextInput
                 type="text"
                 placeholder="Insira seu nome de usuário"
-                id="nome"
+                id="name"
                 onChange={handleChange}
               />
             </div>
@@ -76,7 +76,7 @@ const cadastro = () => {
               <TextInput
                 type="password"
                 placeholder="Insira sua senha..."
-                id="senha"
+                id="password"
                 onChange={handleChange}
               />
             </div>
