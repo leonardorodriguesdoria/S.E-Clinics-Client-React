@@ -20,19 +20,18 @@ const Login = () => {
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!formData.email || !formData.senha) {
+    if (!formData.email || !formData.password) {
       return dispatch(signInFailure("Por favor, preencha todos os campos!!!"));
     }
     try {
       dispatch(signInStart());
-      const res = await fetch("http://localhost:3000/api/paciente/login", {
+      const res = await fetch("http://localhost:3000/users/login", {
         method: "POST",
         headers: { "Content-type": "application/json" },
         credentials: "include",
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-      console.log("Resposta do servidor: ", data);
       if (data.success === false) {
         dispatch(signInFailure(data.message));
       }
@@ -74,7 +73,7 @@ const Login = () => {
               <TextInput
                 type="password"
                 placeholder="*********"
-                id="senha"
+                id="password"
                 onChange={handleChange}
               />
             </div>
